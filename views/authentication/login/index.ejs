@@ -23,7 +23,7 @@
                     <form id="formAuthentication" class="mb-3" method="POST">
                         <div class="mb-3">
                             <label for="email" class="form-label">Email</label>
-                            <input type="text" class="form-control" id="email" name="email" onkeydown="validateMail()"
+                            <input type="text" class="form-control" id="email" name="email"
                                 placeholder="Enter your email" autofocus />
                             <p class="errorMsg" id="invalidEmail">Invalid Email Address</p>
                         </div>
@@ -40,6 +40,7 @@
                                     aria-describedby="password" />
                                 <span class="input-group-text cursor-pointer"><i class="bx bx-hide"></i></span>
                             </div>
+                            <p class="errorMsg" id="invalidPassword">Password is Required*</p>
                         </div>
                         <div class="mb-3">
                             <div class="form-check">
@@ -61,23 +62,48 @@
                 </div>
             </div>
             <!-- /Register -->
-            <script>
-
-                function validateMail() {
-                    let email = $("#email").val()
-                    console.log(email);
-                    let regex = new RegExp('[a-z0-9]+@[a-z]+\.[a-z]{2,3}');
-                    if (regex.test(email)) {
-                        $('#invalidEmail').css('display', 'none');
-                    } else {
-                        $('#invalidEmail').css('display', "block")
-                    }
-                };
-
-                $('#formAuthentication').submit(function (e) {
-                    e.preventDefault();
-                })
-            </script>
         </div>
     </div>
 </div>
+
+<!-- LOGIN PROCESS -->
+
+<script>
+    $('#invalidEmail').css('display', 'none');
+    $('#invalidPassword').css('display', 'none');
+    // FORM VALIDATION VARIABLE
+    let isEmailValid = false;
+    let isPasswordValid = false;
+    // FORM DATA
+    let email;
+    let password;
+    $('#email').on('input', function (evt) {
+        let regex = new RegExp(/^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/g);
+        if (regex.test(evt.target.value)) {
+            $('#invalidEmail').css('display', 'none');
+            isEmailValid = true
+        } else {
+            $('#invalidEmail').css('display', "block")
+            isEmailValid = false
+        }
+        email = evt.target.value
+    })
+
+    $('#password').on('input', function (evt) {
+        if (evt.target.value.length != 0) {
+            $('#invalidPassword').css('display', 'none');
+            isPasswordValid = true
+        } else {
+            $('#invalidPassword').css('display', 'block');
+            isPasswordValid = false
+        }
+        password = evt.target.value
+    })
+
+    $('#formAuthentication').submit(function (e) {
+        e.preventDefault();
+        if (isEmailValid && isPasswordValid) {
+            console.log("ALL VALID", email, password);
+        }
+    })
+</script>

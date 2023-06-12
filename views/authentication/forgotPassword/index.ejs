@@ -10,7 +10,7 @@
           <div class="card-body">
             <!-- Logo -->
             <div class="app-brand justify-content-center">
-              <a href="index.html" class="app-brand-link gap-2">
+              <a href="<%- process.env.BASEURL %>" class="app-brand-link gap-2">
                 <span class="app-brand-logo demo">
                   <img src="<%- process.env.BASEURL %>img/brandLogo.svg" alt="">
                 </span>
@@ -30,8 +30,9 @@
                   placeholder="Enter your email"
                   autofocus
                 />
+                <p class="errorMsg" id="invalidEmail">Invalid Email Address</p>
               </div>
-              <button class="btn btn-primary d-grid w-100">Send Reset Link</button>
+              <button class="btn btn-primary d-grid w-100" type="submit">Send Reset Link</button>
             </form>
             <div class="text-center">
               <a href="<%- process.env.BASEURL %>login" class="d-flex align-items-center justify-content-center">
@@ -45,3 +46,30 @@
       </div>
     </div>
   </div>
+
+  <script>
+    $('#invalidEmail').css('display', 'none');
+    // FORM VALIDATION VARIABLE
+    let isEmailValid = false;
+    // FORM DATA
+    let email;
+    $('#email').on('input', function (evt) {
+        let regex = new RegExp(/^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/g);
+        if (regex.test(evt.target.value)) {
+            $('#invalidEmail').css('display', 'none');
+            isEmailValid = true
+        } else {
+            $('#invalidEmail').css('display', "block")
+            isEmailValid = false
+        }
+        email = evt.target.value
+    })
+  
+    $('#formAuthentication').submit(function (e) {
+        e.preventDefault();
+        if (isEmailValid) {
+            console.log("ALL VALID", email);
+            window.location.href = '<%= process.env.BASEURL %>reset-password'
+        }
+    })
+</script>
