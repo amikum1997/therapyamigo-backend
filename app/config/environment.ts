@@ -13,7 +13,7 @@ const environment = {
      MONGODB_URL : process.env.NODE_ENV === 'production' ? process.env.MONGODB_PRODUCTION as string : process.env.MONGODB_DEVELOPMENT as string,
      jwtSecret: process.env.JWT_SECRET,
      jwtExpirationInterval: process.env.JWT_EXPIRATION,
-     frontend_baseurl: process.env.FRONTEND_BASEURL
+     baseurl: process.env.BASEURL
 }
 
 export default environment

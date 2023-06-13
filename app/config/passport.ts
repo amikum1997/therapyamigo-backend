@@ -10,9 +10,13 @@ passport.serializeUser<any, any>((req, user, done) => {
     done(undefined, user);
 });
 
-passport.deserializeUser((id, done) => {
-    User.findById(id, (err: NativeError, user: any) => done(err, user));
-});
+passport.deserializeUser(async (id, done) => {
+    try {
+        const user = await User.findById(id);
+        done(null, user);
+      } catch (err) {
+        done(err, null);
+      }});
 
 /**
  * Sign in using Email and Password.

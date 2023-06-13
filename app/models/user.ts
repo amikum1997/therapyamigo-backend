@@ -13,6 +13,11 @@ const userSchema = new Schema<userModel>({
         type: String,
         required: true
     },
+    userRole: {
+        type: String,
+        enum: ['USER', 'ADMIN', 'CORPORATE', 'COUNSELOR', 'VENDOR'],
+        default: "USER"
+    },
 }, {
     autoIndex: true,
     timestamps: true
