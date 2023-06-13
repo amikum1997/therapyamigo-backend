@@ -8,5 +8,13 @@ import environment from "../../config/environment";
 import UserSession from "../../models/userVerification";
 
 export const AuthService = {
+    generrateUniqueIdentification: async () => {
+        while (true) {
+            let uniqueIdentifier = `TA${Math.floor(100000 + Math.random() * 900000)}`
+            const checkUniqueNumber = await User.findOne({ uniqueIdentifier: uniqueIdentifier })
 
+            if (!checkUniqueNumber)
+                return uniqueIdentifier
+        }
+    }
 }

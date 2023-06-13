@@ -5,6 +5,7 @@ import User from "../models/user";
 import passport from "passport";
 import { IVerifyOptions } from "passport-local";
 import '../config/passport';
+import { AuthService } from "../services/authService/authService";
 
 const authController = {
     login: async (req: IRequest, res: IResponse, next: INext) => {
@@ -31,6 +32,7 @@ const authController = {
             const salt = await bcrypt.genSalt(10);
             let userPasswordForMail = req.body.userPassword;
             req.body.userPassword = await bcrypt.hash(userPassword, salt);
+            let uniqueIdentifier = await AuthService.generrateUniqueIdentification();
 
             // SAVE USER TO DB
             let newUser = await new User({
@@ -38,7 +40,8 @@ const authController = {
                 userEmail: userEmail.toLowerCase(),
                 userPassword: req.body.userPassword,
                 regRefrence: "ORGANIC",
-                userRole: "USER"
+                userRole: "USER",
+                uniqueIdentifier : uniqueIdentifier
             }).save()
 
             if (!newUser)

@@ -41,6 +41,8 @@ app.use('/', express.static(path.join(__dirname, '..', '/uploads')))
 // EJS setup
 app.use(expressLayout);
 
+app.set('layout' , 'layouts/websiteLayout')
+
 // Setting the root path for views directory
 app.set('views', path.join(__dirname, '../..', 'views'));
 
