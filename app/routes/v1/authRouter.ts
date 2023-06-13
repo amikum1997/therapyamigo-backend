@@ -13,7 +13,8 @@ authRouter.route('/reset-password').get(authViewController.resetPassword)
 authRouter.route('/verify-account').get(authViewController.verifyAccount)
 
 // DATA CONTROLLER ROUTES
-authRouter.route('/auth/login').post(authController.login)
+authRouter.route('/login').post(authController.login)
+authRouter.route('/register').post(authController.register)
 
 
 

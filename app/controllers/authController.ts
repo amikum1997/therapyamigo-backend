@@ -15,10 +15,11 @@ const authController = {
             }
             req.logIn(user, (err) => {
                 if (err) { return next(err); }
+                return res.status(200).send({ status: 200, data: user })
             });
         })(req, res, next);
     },
-    
+
     register: async (req: IRequest, res: IResponse, next: INext) => {
         try {
             const { userName, userEmail, userPassword } = req.body
