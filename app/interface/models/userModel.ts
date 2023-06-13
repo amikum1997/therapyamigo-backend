@@ -6,7 +6,8 @@ export interface userModel {
     countryCode : string,
     phoneNumber : string,
     regRefrence : string,
-    userPatronRefrence : any,
+    userCorporateRefrence : any,
+    userVendorRefrence : any,
     uniqueIdentifier:string,
     userProfilePicture : string,
     userRole : string,
@@ -23,5 +24,9 @@ export interface userModel {
     selfHelpAccess : {
         plan : any,
         validity : Date,
+    },
+    chatAccess : {
+        creditsLeft : Number,
+        creditExpiry : Date
     }
 }

@@ -12,6 +12,7 @@ import expressLayout from 'express-ejs-layouts';
 import * as passportConfig from "./passport";
 import passport from "passport";
 import session from "express-session";
+import { INext, IRequest, IResponse } from "../interface/vendors";
 
 
 
@@ -64,6 +65,10 @@ app.use(methodOverride());
 
 // mount api v1 routes
 app.use('/', router);
+
+app.get('*', function (req, res) {
+    res.render("utility/error404")
+});
 
 // BASE ERROR HANDELING
 app.use(HandleError.returnError);

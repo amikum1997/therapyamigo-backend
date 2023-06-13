@@ -35,8 +35,10 @@ const authController = {
             // SAVE USER TO DB
             let newUser = await new User({
                 userName: userName,
-                userEmail: userEmail,
-                userPassword: req.body.userPassword
+                userEmail: userEmail.toLowerCase(),
+                userPassword: req.body.userPassword,
+                regRefrence: "ORGANIC",
+                userRole: "USER"
             }).save()
 
             if (!newUser)
