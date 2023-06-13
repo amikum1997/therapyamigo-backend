@@ -100,10 +100,11 @@
         password = evt.target.value
     })
 
-    $('#formAuthentication').submit(function (e) {
+    $('#formAuthentication').submit(async function (e) {
         e.preventDefault();
         if (isEmailValid && isPasswordValid) {
-            console.log("ALL VALID", email, password);
+            let response = await axios.post("http://localhost:2000/auth/login" , {email : email , password : password})
+            console.log(response);
         }
     })
 </script>

@@ -1,26 +1,24 @@
-import passport from "../middleware/passport.middleware";
 import { INext, IRequest, IResponse } from "../interface/vendors";
 import BaseError from "../error/baseError";
 import bcrypt from 'bcryptjs';
 import User from "../models/user";
-
+import passport from "passport";
+import { IVerifyOptions } from "passport-local";
+import '../config/passport';
 
 const authController = {
     login: async (req: IRequest, res: IResponse, next: INext) => {
-        try {
-            passport.authenticate("local", (err: any, user: any, info: any) => {
-                if (!user)
-                    res.status(400).send({ status: 400, message: "No User Found!! , Please Register to continue." })
-
-                req.logIn(user, (err) => {
-                    if (err) throw err;
-                    res.status(200).send({ status: 200, message: "USER DETAIL", data: user })
-                })
-            })(req, res, next)
-        } catch (err) {
-            next(err)
-        }
+        passport.authenticate("local", (error: any, user: any, info: IVerifyOptions) => {
+            if (error) { return next(error); }
+            if (!user) {
+                res.status(400).send({ status: 400, message: info.message })
+            }
+            req.logIn(user, (err) => {
+                if (err) { return next(err); }
+            });
+        })(req, res, next);
     },
+    
     register: async (req: IRequest, res: IResponse, next: INext) => {
         try {
             const { userName, userEmail, userPassword } = req.body

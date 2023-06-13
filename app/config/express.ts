@@ -9,8 +9,11 @@ import helmet from "helmet";
 import methodOverride from 'method-override';
 import HandleError from "../error/errorHandeler";
 import expressLayout from 'express-ejs-layouts';
-import sessionMiddleware from "../middleware/session.middleware";
-import passport from "../middleware/passport.middleware";
+import * as passportConfig from "./passport";
+import passport from "passport";
+import session from "express-session";
+
+
 
 
 const app: Application = express();
@@ -18,11 +21,15 @@ const app: Application = express();
 // Body parsing Middleware
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
-app.use(sessionMiddleware)
-// PASSPORT LOCAL AUTHENTICATION METHOD
-app.use(passport.initialize())
-// PASSPORT LOCAL SESSION
-app.use(passport.session())
+
+app.use(session({
+    resave: true,
+    saveUninitialized: true,
+    secret: environment.jwtSecret as unknown as string,
+}));
+
+app.use(passport.initialize());
+app.use(passport.session());
 
 const publicDirectoryPath = path.join(__dirname, '../..', "./public");
 app.use(express.static(publicDirectoryPath));
