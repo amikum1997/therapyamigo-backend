@@ -6,7 +6,7 @@ const authViewController = {
     login: async (req: IRequest, res: IResponse, next: INext) => {
         try {
             if (!req.user) {
-                return res.render("authentication/login", { layout: "layouts/clientLayout" })
+                return res.render("screens/authentication/login", { layout: "layouts/clientLayout" })
             } else {
                 return res.redirect('/dashboard')
             }
@@ -17,7 +17,7 @@ const authViewController = {
     register: async (req: IRequest, res: IResponse, next: INext) => {
         try {
             if (!req.user) {
-                res.render("authentication/register", { layout: "layouts/clientLayout" })
+                res.render("screens/authentication/register", { layout: "layouts/clientLayout" })
             } else {
                 return res.redirect('/dashboard')
             }
@@ -28,7 +28,7 @@ const authViewController = {
     forgotPassword: async (req: IRequest, res: IResponse, next: INext) => {
         try {
             if (!req.user) {
-                res.render("authentication/forgotPassword", { layout: "layouts/clientLayout" })
+                res.render("screens/authentication/forgotPassword", { layout: "layouts/clientLayout" })
             } else {
                 return res.redirect('/dashboard')
             }
@@ -39,7 +39,7 @@ const authViewController = {
     resetPassword: async (req: IRequest, res: IResponse, next: INext) => {
         try {
             if (!req.user) {
-                res.render("authentication/resetPassword", { layout: "layouts/clientLayout" })
+                res.render("screens/authentication/resetPassword", { layout: "layouts/clientLayout" })
             } else {
                 return res.redirect('/dashboard')
             }
@@ -50,7 +50,7 @@ const authViewController = {
     verifyAccount: async (req: IRequest, res: IResponse, next: INext) => {
         try {
             if (!req.user) {
-                res.render("authentication/verifyAccount", { layout: "layouts/clientLayout" })
+                res.render("screens/authentication/verifyAccount", { layout: "layouts/clientLayout" })
             } else {
                 return res.redirect('/dashboard')
             }
