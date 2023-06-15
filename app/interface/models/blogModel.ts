@@ -7,10 +7,9 @@ interface blogInterface extends Document {
         name: string,
         content: string
     }],
-    publishDate: string,
+    publishDate: Date,
     blogShortDesc: string,
     blogSlug: string,
-    blogurl: string,
     blogData: string,
     blogHeaderImage: string,
     blogTags: [string],

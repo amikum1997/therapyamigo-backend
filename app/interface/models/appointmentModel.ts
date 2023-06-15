@@ -20,7 +20,6 @@ interface appointmentInterface extends Document {
     refunded : boolean,
     createdBy : ObjectId,
     updatedBy : ObjectId,
-    meetLink : {},
 }
 
 export default appointmentInterface;
