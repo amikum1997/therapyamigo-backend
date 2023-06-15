@@ -32,8 +32,8 @@ app.use(session({
 app.use(passport.initialize());
 app.use(passport.session());
 
-const publicDirectoryPath = path.join(__dirname, '../..', "./public");
-app.use(express.static(publicDirectoryPath));
+app.use('/',express.static(path.join(__dirname, '../..', "./public")));
+app.use('/admin',express.static(path.join(__dirname, '../..', "./public")));
 
 // upload image static path
 app.use('/', express.static(path.join(__dirname, '..', '/uploads')))
