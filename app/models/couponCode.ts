@@ -7,7 +7,8 @@ const CouponCodeSchema = new Schema<couponCode>({
         required : true
     },
     codeDiscountValue: {
-        type : Number
+        type : Number,
+        required : true
     },
     isActive: {
         type : Boolean,

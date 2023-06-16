@@ -8,6 +8,7 @@ interface myupdateInterface extends Document {
     updateDesc : string,
     updateCategory : string,
     link : string,
+    seen : boolean
 }
 
 export default myupdateInterface;
