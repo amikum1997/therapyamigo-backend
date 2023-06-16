@@ -37,7 +37,96 @@ const userViewController = {
                 })
             }
         }
+    },
+    websiteAnalyticsDashboard: async (req: IRequest, res: IResponse, next: INext) => {
+        const userDetail: any = req.user;
+        if (!userDetail || userDetail.userRole != "ADMIN") {
+            res.render("screens/utility/error404" , {layout: "layouts/clientLayout"})
+        }else{
+            return res.render("screens/userDashboard/websiteMetricesDashboard", {
+                layout: "layouts/dashboardLayout",
+                user: JSON.stringify(userDetail)
+            })
+        }
+    },
+    helpDeskAnalyticsDashboard: async (req: IRequest, res: IResponse, next: INext) => {
+        const userDetail: any = req.user;
+        if (!userDetail || userDetail.userRole != "ADMIN") {
+            res.render("screens/utility/error404" , {layout: "layouts/clientLayout"})
+        }else{
+            return res.render("screens/userDashboard/helpdeskDashboard", {
+                layout: "layouts/dashboardLayout",
+                user: JSON.stringify(userDetail)
+            })
+        }
+    },
+    websiteUsers: async (req: IRequest, res: IResponse, next: INext) => {
+        const userDetail: any = req.user;
+        if (!userDetail || userDetail.userRole != "ADMIN") {
+            res.render("screens/utility/error404" , {layout: "layouts/clientLayout"})
+        }else{
+            return res.render("screens/dashboard/clientManagement", {
+                layout: "layouts/dashboardLayout",
+                user: JSON.stringify(userDetail)
+            })
+        }
+    },
+    manageCounselors: async (req: IRequest, res: IResponse, next: INext) => {
+        const userDetail: any = req.user;
+        if (!userDetail || userDetail.userRole != "ADMIN") {
+            res.render("screens/utility/error404" , {layout: "layouts/clientLayout"})
+        }else{
+            return res.render("screens/dashboard/counselorManagement", {
+                layout: "layouts/dashboardLayout",
+                user: JSON.stringify(userDetail)
+            })
+        }
+    },
+    manageTransaction: async (req: IRequest, res: IResponse, next: INext) => {
+        const userDetail: any = req.user;
+        if (!userDetail || userDetail.userRole != "ADMIN") {
+            res.render("screens/utility/error404" , {layout: "layouts/clientLayout"})
+        }else{
+            return res.render("screens/dashboard/transactionManagement", {
+                layout: "layouts/dashboardLayout",
+                user: JSON.stringify(userDetail)
+            })
+        }
+    },
+    internalTicketManagement: async (req: IRequest, res: IResponse, next: INext) => {
+        const userDetail: any = req.user;
+        if (!userDetail || userDetail.userRole != "ADMIN") {
+            res.render("screens/utility/error404" , {layout: "layouts/clientLayout"})
+        }else{
+            return res.render("screens/dashboard/internalTicketManagement", {
+                layout: "layouts/dashboardLayout",
+                user: JSON.stringify(userDetail)
+            })
+        }
+    },
+    corporateManagement: async (req: IRequest, res: IResponse, next: INext) => {
+        const userDetail: any = req.user;
+        if (!userDetail || userDetail.userRole != "ADMIN") {
+            res.render("screens/utility/error404" , {layout: "layouts/clientLayout"})
+        }else{
+            return res.render("screens/dashboard/corporateManagement", {
+                layout: "layouts/dashboardLayout",
+                user: JSON.stringify(userDetail)
+            })
+        }
+    },
+    vendorManagement: async (req: IRequest, res: IResponse, next: INext) => {
+        const userDetail: any = req.user;
+        if (!userDetail || userDetail.userRole != "ADMIN") {
+            res.render("screens/utility/error404" , {layout: "layouts/clientLayout"})
+        }else{
+            return res.render("screens/dashboard/vendorManagement", {
+                layout: "layouts/dashboardLayout",
+                user: JSON.stringify(userDetail)
+            })
+        }
     }
+
 }
 
 export default userViewController;
