@@ -13,8 +13,8 @@ import * as passportConfig from "./passport";
 import passport from "passport";
 import session from "express-session";
 import { INext, IRequest, IResponse } from "../interface/vendors";
-
-
+import { mongoConnection } from "./mongoose";
+import MongoStore from "connect-mongo";
 
 
 const app: Application = express();
@@ -23,17 +23,20 @@ const app: Application = express();
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
+const sessionStore = MongoStore.create({ mongoUrl: environment.MONGODB_URL });
+
 app.use(session({
     resave: true,
     saveUninitialized: true,
     secret: environment.jwtSecret as unknown as string,
+    store: sessionStore,
 }));
 
 app.use(passport.initialize());
 app.use(passport.session());
 
-app.use('/',express.static(path.join(__dirname, '../..', "./public")));
-app.use('/admin',express.static(path.join(__dirname, '../..', "./public")));
+app.use('/', express.static(path.join(__dirname, '../..', "./public")));
+app.use('/admin', express.static(path.join(__dirname, '../..', "./public")));
 
 // upload image static path
 app.use('/', express.static(path.join(__dirname, '..', '/uploads')))
@@ -41,7 +44,7 @@ app.use('/', express.static(path.join(__dirname, '..', '/uploads')))
 // EJS setup
 app.use(expressLayout);
 
-app.set('layout' , 'layouts/websiteLayout')
+app.set('layout', 'layouts/websiteLayout')
 
 // Setting the root path for views directory
 app.set('views', path.join(__dirname, '../..', 'views'));

@@ -24,5 +24,6 @@ const connect = () => {
       .then(() => console.log(`Mongodb connection established with ${environment.MONGODB_URL}`));
     return mongoose.connection;
   };
-  
+
+export const mongoConnection = mongoose.connection
 export default connect;
