@@ -43,8 +43,15 @@ const AdminController = {
     },
     updateCounselorDetail: async (req: IRequest, res: IResponse, next: INext) => {
         try {
-            let {counselorID} = req.body;
-            
+            let counselorID = req.body.counselorID;
+            // UPDATE COUNSELOR DETAIL AGAINST PROVIDED COUNSELOR ID
+            delete req.body.counselorID;
+            let updateCounselorDetail = await Counselor.findByIdAndUpdate(counselorID, req.body)
+
+            if (!updateCounselorDetail)
+                throw new BaseError(GeneralError.SOMETHING_WENT_WRONG)
+
+            return res.status(200).send({ status: 200, message: "COUNSELOR PROFILE UPDATED" })
         } catch (err) {
             next(err)
         }
