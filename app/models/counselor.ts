@@ -9,14 +9,12 @@ const CounselorSchema = new Schema<counselorInterface>({
     },
     councellorProfilePicture: {
         type: String,
-        required: true
     },
     counselorVideo: {
         type: String
     },
     slug: {
         type: String,
-        required: true
     },
     metaDescription: [{
         _id: false,
@@ -29,7 +27,6 @@ const CounselorSchema = new Schema<counselorInterface>({
     }],
     educationalDegree: {
         type: String,
-        required: true
     },
     totalClient: {
         type: Number,
@@ -62,7 +59,8 @@ const CounselorSchema = new Schema<counselorInterface>({
     sessionType: [],
     language: [],
     counselorStatus: {
-        type: String
+        type: String,
+        enum: ['ON BOARDING', 'TRAINING', 'ACTIVE', 'NOTIC PERIOD', 'DEACTIVATED']
     },
     workEndDate: {
         type: String
