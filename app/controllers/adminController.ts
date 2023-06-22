@@ -9,7 +9,7 @@ import Counselor from "../models/counselor";
 const AdminController = {
     createNewCounselor: async (req: IRequest, res: IResponse, next: INext) => {
         try {
-            let { counselorName, counselorEmail, counselorPassword, counselorPhoneNumber, counselorPhoneCountryCode } = req.body;
+            let { counselorName, counselorEmail, counselorPassword, counselorPhoneNumber, counselorPhoneCountryCode, counselorCurrentAddress, counselorPermanentAddress } = req.body;
             // FORMAT STRUCTURE TO CREATE A NEW USER WITH ROLE COUNSELOR
             const salt = await bcrypt.genSalt(10);
             let cPass = req.body.counselorPassword;
@@ -19,7 +19,9 @@ const AdminController = {
                 userEmail: counselorEmail,
                 userRole: "COUNSELOR",
                 countryCode: counselorPhoneCountryCode,
-                phoneNumber: counselorPhoneNumber
+                phoneNumber: counselorPhoneNumber,
+                currentAddress: counselorCurrentAddress,
+                permanentAddress: counselorPermanentAddress
             }
 
             // CREATE NEW COUNSELOR
