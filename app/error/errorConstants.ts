@@ -6,5 +6,6 @@ export const GeneralError = Object.freeze({
     PASSWORD_MISSMATCHED : "Password or ID does not match. Retry with correct ID & password combination.",
     POLICY_VIOLATION : "Your TherapyAmigo account has been suspended due to policy violation issues. Please contact the TherapyAmigo helpline number to have your account unblocked.",
     USER_NOT_EXIST : "Sorry, We couldn't find this user in our system , Please try searcing again with correct userID/clientID",
-    NO_SHOW_ERROR : "Appointment can not be marked no show only after 30 of appointment start time"
+    NO_SHOW_ERROR : "Appointment can not be marked no show only after 30 minutes of appointment start time",
+    NO_SLOT_AVAILABLE : "Slots not avaialbale."
 })

@@ -10,6 +10,8 @@ export interface userModel {
     userVendorRefrence : any,
     uniqueIdentifier:string,
     userProfilePicture : string,
+    currentAddress : string,
+    permanentAddress : string,
     userRole : string,
     isCouple:boolean,
     coupleRefrence:any,
