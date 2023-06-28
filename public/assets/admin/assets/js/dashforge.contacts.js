@@ -14,6 +14,10 @@ $(function(){
     suppressScrollX: true
   });
 
+  new PerfectScrollbar('#overlayScroll' , {
+    suppressScrollX: true
+  })
+
   new PerfectScrollbar('.contact-content-body', {
     suppressScrollX: true
   });

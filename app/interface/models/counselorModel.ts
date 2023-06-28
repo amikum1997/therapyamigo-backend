@@ -9,6 +9,12 @@ interface counselorInterface extends Document {
         name: string,
         content: string
     }],
+    address:{
+        country : string,
+        state : string,
+        city : string,
+        address : string
+    },
     educationalDegree: string,
     totalClient: number,
     personality: {

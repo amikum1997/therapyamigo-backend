@@ -27,7 +27,7 @@ const userSchema = new Schema<userModel>({
     },
     regRefrence: {
         type: String,
-        enum: ["ORGANIC","THERAPY-AMIGO", "CORPORATE", "VENDOR", "CORPORATE-DEPENDENT"]
+        enum: ["ORGANIC", "THERAPY-AMIGO", "CORPORATE", "VENDOR", "CORPORATE-DEPENDENT"]
     },
     userCorporateRefrence: {
         type: mongoose.Schema.Types.ObjectId,

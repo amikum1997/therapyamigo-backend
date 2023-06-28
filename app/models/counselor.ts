@@ -25,6 +25,20 @@ const CounselorSchema = new Schema<counselorInterface>({
             type: String
         }
     }],
+    address: {
+        country: {
+            type: String
+        },
+        state: {
+            type: String
+        },
+        city: {
+            type: String
+        },
+        address: {
+            type: String
+        },
+    },
     educationalDegree: {
         type: String,
     },

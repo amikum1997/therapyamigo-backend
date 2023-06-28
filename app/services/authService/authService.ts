@@ -18,3 +18,5 @@ export const AuthService = {
         }
     }
 }
+
+export const passwordGenerator = (size: any) => [...Array(size)].map(() => Math.floor(Math.random() * 16).toString(16)).join('');
