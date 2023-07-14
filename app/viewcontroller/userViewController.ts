@@ -1,4 +1,7 @@
+import BaseError from "../error/baseError";
 import { INext, IRequest, IResponse } from "../interface/vendors";
+import Counselor from "../models/counselor";
+
 
 const userViewController = {
     userDashbaord: async (req: IRequest, res: IResponse, next: INext) => {
@@ -76,9 +79,14 @@ const userViewController = {
         if (!userDetail || userDetail.userRole != "ADMIN") {
             res.render("screens/utility/error404" , {layout: "layouts/clientLayout"})
         }else{
+            let allCounselorsList = await Counselor.find({}).populate(['user']);
+            if (!allCounselorsList)
+                throw new BaseError('No Counselor Found')
+
             return res.render("screens/dashboard/counselorManagement", {
                 layout: "layouts/dashboardLayout",
-                user: JSON.stringify(userDetail)
+                user: JSON.stringify(userDetail),
+                counselorList : allCounselorsList
             })
         }
     },

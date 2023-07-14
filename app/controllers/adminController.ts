@@ -23,8 +23,8 @@ const AdminController = {
                 regRefrence: "THERAPY-AMIGO",
                 countryCode: counselorPhoneCountryCode,
                 phoneNumber: counselorPhoneNumber,
-                userPassword : newcounselorPassword,
-                uniqueIdentifier : await AuthService.generrateUniqueIdentification()
+                userPassword: newcounselorPassword,
+                uniqueIdentifier: await AuthService.generrateUniqueIdentification()
             }
 
             // CREATE NEW COUNSELOR
@@ -49,6 +49,17 @@ const AdminController = {
                 throw new BaseError(GeneralError.SOMETHING_WENT_WRONG)
 
             return res.status(200).send({ status: 200, message: "NEW COUNSELOR CREATED" })
+        } catch (err) {
+            next(err)
+        }
+    },
+    getAllCounselorsList: async (req: IRequest, res: IResponse, next: INext) => {
+        try {
+            let allCounselorsList = await Counselor.find({}).populate(['user']);
+            if (!allCounselorsList)
+                throw new BaseError('No Counselor Found')
+
+            res.status(200).send({ status: 200, message: 'All Counselor List', data: allCounselorsList })
         } catch (err) {
             next(err)
         }
