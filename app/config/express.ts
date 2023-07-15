@@ -36,7 +36,11 @@ app.use(passport.initialize());
 app.use(passport.session());
 
 app.use('/', express.static(path.join(__dirname, '../..', "./public")));
-app.use('/admin', express.static(path.join(__dirname, '../..', "./public")));
+app.use('/assets', express.static(path.join(__dirname, '../..', "./public")));
+app.use('/GeneralAssets', express.static(path.join(__dirname, '../..', "./public")));
+app.use('/InternalDashboardAssets', express.static(path.join(__dirname, '../..', "./public")));
+app.use('/userDashboardAssets', express.static(path.join(__dirname, '../..', "./public")));
+app.use('/websiteAssets', express.static(path.join(__dirname, '../..', "./public")));
 
 // upload image static path
 app.use('/', express.static(path.join(__dirname, '..', '/uploads')))
